@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "cheapest-domains",
+  "version": "0.10.1",
+  "license": "MIT",
+  "repository": "https://github.com/igalil/cheapest-domains-integrations",
+  "description": "Research domain names and compare registration, renewal and estimated costs across selected registrars. Check suggested names by default and show their availability status with read-only tools.",
+  "author": {
+    "name": "Cheapest domains",
+    "url": "https://cheapest.domains"
+  },
+  "homepage": "https://www.cheapest.domains/for-ai",
+  "keywords": [
+    "domains",
+    "renewal-prices",
+    "registrars",
+    "naming"
+  ]
+}

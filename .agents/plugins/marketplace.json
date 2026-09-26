@@ -1,0 +1,20 @@
+{
+  "name": "cheapest-domains",
+  "interface": {
+    "displayName": "Cheapest Domains"
+  },
+  "plugins": [
+    {
+      "name": "cheapest-domains",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cheapest-domains"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

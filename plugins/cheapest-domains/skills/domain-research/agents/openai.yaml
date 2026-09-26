@@ -1,0 +1,13 @@
+interface:
+  display_name: "Domain research"
+  short_description: "Find domain names with affordable renewal prices"
+  default_prompt: "Use $domain-research to suggest names for my project, compare their annual renewal costs, and check availability by default. Prefer available names and show the status of every suggestion."
+  brand_color: "#C5F74C"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cheapest-domains"
+      description: "Public domain prices, exact-name availability checks, and Cloudflare Radar DNS popularity"
+      transport: "streamable_http"
+      url: "https://cheapest.domains/mcp"

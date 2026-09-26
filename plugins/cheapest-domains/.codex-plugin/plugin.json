@@ -1,0 +1,37 @@
+{
+  "name": "cheapest-domains",
+  "version": "0.10.1",
+  "license": "MIT",
+  "repository": "https://github.com/igalil/cheapest-domains-integrations",
+  "description": "Research domain names and compare registration, renewal and estimated costs across selected registrars. Check suggested names by default and show their availability status with read-only tools.",
+  "author": {
+    "name": "Cheapest domains",
+    "url": "https://cheapest.domains"
+  },
+  "homepage": "https://www.cheapest.domains/for-ai",
+  "keywords": [
+    "domains",
+    "renewal-prices",
+    "registrars",
+    "naming"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Cheapest domains",
+    "shortDescription": "Find domain names you can afford to keep.",
+    "longDescription": "Use your assistant to suggest names, compare fresh renewal prices across selected registrars, estimate supported ownership costs, and check exact-name availability and premium status. Keep source dates and unknown results explicit. Purchase directly at your registrar. Optional Cloudflare Radar data measures DNS popularity, not Google search competition.",
+    "developerName": "Cheapest domains",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://cheapest.domains",
+    "brandColor": "#C5F74C",
+    "defaultPrompt": [
+      "Suggest domain names for my project with low annual renewals.",
+      "Compare current .com renewal prices across registrars.",
+      "Find domain extensions under $15 per year to renew."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

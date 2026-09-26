@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cheapest-domains": {
+      "type": "http",
+      "url": "https://cheapest.domains/mcp"
+    }
+  }
+}

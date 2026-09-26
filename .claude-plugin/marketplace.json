@@ -1,0 +1,12 @@
+{
+  "name": "cheapest-domains",
+  "owner": { "name": "Cheapest domains" },
+  "metadata": { "description": "Domain-name discovery and renewal-price comparison tools for AI assistants." },
+  "plugins": [
+    {
+      "name": "cheapest-domains",
+      "source": "./plugins/cheapest-domains",
+      "description": "Project-based domain naming and renewal-price comparisons through the public MCP service."
+    }
+  ]
+}
