@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "cheapest-domains",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "license": "MIT",
   "repository": "https://github.com/igalil/cheapest-domains-integrations",
   "description": "Find domain names you can afford to keep. Compare annual renewal prices across selected registrars, with first-year registration prices and multi-year estimates shown separately. Check suggested names and show their availability status with read-only tools.",

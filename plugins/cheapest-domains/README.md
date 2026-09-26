@@ -6,6 +6,13 @@ Our main focus is the real cost of keeping a domain: its annual renewal price. C
 
 No API key is required for Cheapest domains. The host AI application still requires its own normal access. The plugin contains instructions and a remote connection; it runs no installation hooks or local server. Use check_availability for exact names; purchasing is not supported. The deployed server must have its availability provider configured.
 
+## Service links
+
+- [Privacy policy](https://www.cheapest.domains/privacy)
+- [Support](https://www.cheapest.domains/terms#legal-contact)
+- [Documentation](https://www.cheapest.domains/developers)
+- [Terms of service](https://www.cheapest.domains/terms)
+
 ## License
 
 This plugin, its bundled skill and API reference, and the Codex/Claude/Cursor
@@ -139,6 +146,10 @@ update does not establish service deployment or update installed clients.
 Version **0.10.1** adds MIT licensing and the public integration repository,
 including install commands and repository metadata. API **1.7.0**, the nine
 tools and the 20-extension batch limit are unchanged.
+
+Version **0.10.3** adds the directory icon and explicit privacy, support,
+documentation and terms links for Claude's listing preview. Runtime tools and
+the shared skill are unchanged.
 
 Version **0.10.2** makes annual renewal prices the main focus of the listing
 copy, READMEs and shared skill. Initial registration prices stay separate. API
