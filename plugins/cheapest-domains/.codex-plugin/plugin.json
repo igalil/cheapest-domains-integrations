@@ -1,9 +1,9 @@
 {
   "name": "cheapest-domains",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "license": "MIT",
   "repository": "https://github.com/igalil/cheapest-domains-integrations",
-  "description": "Research domain names and compare registration, renewal and estimated costs across selected registrars. Check suggested names by default and show their availability status with read-only tools.",
+  "description": "Find domain names you can afford to keep. Compare annual renewal prices across selected registrars, with first-year registration prices and multi-year estimates shown separately. Check suggested names and show their availability status with read-only tools.",
   "author": {
     "name": "Cheapest domains",
     "url": "https://cheapest.domains"
@@ -18,8 +18,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Cheapest domains",
-    "shortDescription": "Find domain names you can afford to keep.",
-    "longDescription": "Use your assistant to suggest names, compare fresh renewal prices across selected registrars, estimate supported ownership costs, and check exact-name availability and premium status. Keep source dates and unknown results explicit. Purchase directly at your registrar. Optional Cloudflare Radar data measures DNS popularity, not Google search competition.",
+    "shortDescription": "Compare renewal prices. Find domains you can afford to keep.",
+    "longDescription": "Focus on the real cost of keeping a domain: its annual renewal price. Compare selected registrars, with initial registration prices shown separately and supported multi-year estimates. Your assistant suggests names and checks availability and premium status. Preserve source dates, partial coverage and unknown results. Renewal rates can change; purchases and exact premium prices remain at the registrar. Optional Cloudflare Radar data measures DNS popularity, not Google search competition.",
     "developerName": "Cheapest domains",
     "category": "Productivity",
     "capabilities": [

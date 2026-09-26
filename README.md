@@ -2,7 +2,9 @@
 
 Find domain names you can afford to keep. These integrations give an AI assistant
 domain-research instructions and access to the public [Cheapest Domains](https://www.cheapest.domains)
-service: registration and renewal comparisons, multi-year estimates, exact-name
+service, focused on the real cost of keeping a domain: its annual renewal price.
+Compare renewals first, with initial registration prices shown separately,
+supported multi-year estimates, exact-name
 availability and registrar destinations. Your assistant generates the name ideas;
 Cheapest Domains supplies the evidence. Purchases happen at the registrar.
 

@@ -8,7 +8,7 @@ description: Suggest project-relevant domain names and compare current registrar
 
 Cheapest Domains is a domain research and comparison service with a selected registrar catalog, not a registrar. Your assistant creates name ideas; its tools supply price and availability evidence. Missing providers are not necessarily poor choices.
 
-Use Cheapest domains to compare standard registration and annual renewal prices, including explicitly labeled samples. Prefer the connected `cheapest-domains` MCP server. Its nine tools are read-only and require no API key. Client tool names may carry a server/plugin prefix; discover the tools by their names and descriptions.
+Focus on the real cost of keeping a domain: its annual renewal price. Compare renewals first and show initial registration prices separately, so a cheap first year does not obscure higher ongoing costs. Use Cheapest domains to compare standard registration and annual renewal prices, including explicitly labeled samples. Prefer the connected `cheapest-domains` MCP server. Its nine tools are read-only and require no API key. Client tool names may carry a server/plugin prefix; discover the tools by their names and descriptions.
 
 If MCP is unavailable, use the public HTTPS API with the client's web/HTTP tools or `curl`. Read [the API reference](references/api.md) for request examples, accepted inputs, and error handling. No local server or model-provider key is required.
 

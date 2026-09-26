@@ -2,7 +2,7 @@
 
 Cheapest Domains is a domain research and price comparison service with a selected registrar catalog. Start with [assistant setup and a first request](https://www.cheapest.domains/for-ai), or install the complete naming workflow below.
 
-Suggest names that fit a project, compare current annual renewal prices, estimate supported new-registration costs, and obtain registrar search links. The package includes Codex, Claude Code and Agent Plugins manifests, one shared `domain-research` skill, and a public MCP connection.
+Our main focus is the real cost of keeping a domain: its annual renewal price. Compare renewals first, with first-year registration prices shown separately, so an introductory deal does not hide a higher recurring cost. Suggest names that fit a project, estimate supported new-registration costs, and obtain registrar search links. Renewal rates can change; estimates are not guaranteed future prices. The package includes Codex, Claude Code and Agent Plugins manifests, one shared `domain-research` skill, and a public MCP connection.
 
 No API key is required for Cheapest domains. The host AI application still requires its own normal access. The plugin contains instructions and a remote connection; it runs no installation hooks or local server. Use check_availability for exact names; purchasing is not supported. The deployed server must have its availability provider configured.
 
@@ -139,3 +139,7 @@ update does not establish service deployment or update installed clients.
 Version **0.10.1** adds MIT licensing and the public integration repository,
 including install commands and repository metadata. API **1.7.0**, the nine
 tools and the 20-extension batch limit are unchanged.
+
+Version **0.10.2** makes annual renewal prices the main focus of the listing
+copy, READMEs and shared skill. Initial registration prices stay separate. API
+**1.7.0**, the nine tools and the 20-extension batch limit are unchanged.

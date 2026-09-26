@@ -1,9 +1,9 @@
 {
   "name": "cheapest-domains",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "license": "MIT",
   "repository": "https://github.com/igalil/cheapest-domains-integrations",
-  "description": "Research domain names and compare registration, renewal and estimated costs across selected registrars. Check suggested names by default and show their availability status with read-only tools.",
+  "description": "Find domain names you can afford to keep. Compare annual renewal prices across selected registrars, with first-year registration prices and multi-year estimates shown separately. Check suggested names and show their availability status with read-only tools.",
   "author": {
     "name": "Cheapest domains",
     "url": "https://cheapest.domains"
