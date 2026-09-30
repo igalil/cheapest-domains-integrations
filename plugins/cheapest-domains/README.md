@@ -1,10 +1,10 @@
-# Cheapest domains for Codex, Claude, and Cursor
+# Cheapest Domains for Codex, Claude, and Cursor
 
 Cheapest Domains is a domain research and price comparison service with a selected registrar catalog. Start with [assistant setup and a first request](https://www.cheapest.domains/for-ai), or install the complete naming workflow below.
 
 Our main focus is the real cost of keeping a domain: its annual renewal price. Compare renewals first, with first-year registration prices shown separately, so an introductory deal does not hide a higher recurring cost. Suggest names that fit a project, estimate supported new-registration costs, and obtain registrar search links. Renewal rates can change; estimates are not guaranteed future prices. The package includes Codex, Claude Code and Agent Plugins manifests, one shared `domain-research` skill, and a public MCP connection.
 
-No API key is required for Cheapest domains. The host AI application still requires its own normal access. The plugin contains instructions and a remote connection; it runs no installation hooks or local server. Use check_availability for exact names; purchasing is not supported. The deployed server must have its availability provider configured.
+No API key is required for Cheapest Domains. The host AI application still requires its own normal access. The plugin contains instructions and a remote connection; it runs no installation hooks or local server. Use check_availability for exact names; purchasing is not supported. The deployed server must have its availability provider configured.
 
 ## Service links
 
@@ -45,7 +45,7 @@ claude plugin marketplace add igalil/cheapest-domains-integrations
 claude plugin install cheapest-domains@cheapest-domains
 ```
 
-Alternatively, download the marketplace ZIP from [the integration page](https://cheapest.domains/developers#plugins), extract it and run the commands above using the extracted folder path instead of the GitHub repository. Keep that folder for local updates.
+Alternatively, download the marketplace ZIP from [the integration page](https://www.cheapest.domains/developers#plugins), extract it and run the commands above using the extracted folder path instead of the GitHub repository. Keep that folder for local updates.
 
 Choose one installation method per client. The Codex and Claude marketplaces install both the skill and its MCP connection; do not add a duplicate standalone MCP server. Start a new Codex task or reload Claude's plugins after installation. The public repository and archive contain only integration files; application-repository access is unnecessary.
 
@@ -107,7 +107,7 @@ The separate skill ZIP contains only the skill folder and its supporting files. 
 
 The current workflow follows the requested number of suggestions and checks availability by default without waiting for finalist selection. Prefer confirmed available names; label any useful taken or unconfirmed candidates. For available-only requests, count only confirmed available names. Users can request unchecked brainstorming or no external checks. Work through a finite candidate pool, pace lookups within existing budgets, reuse fresh results and explain any shortfall.
 
-`search_prices`, `get_tld_prices`, `get_registrars`, `estimate_cost`, `get_registrar_link`, `get_naming_guidance`, `check_availability`, `check_availability_batch`, and `get_domain_popularity` use the existing read-only service at `https://cheapest.domains/mcp`. See [the public guide](https://cheapest.domains/developers.md) and [the bundled API reference](skills/domain-research/references/api.md).
+`search_prices`, `get_tld_prices`, `get_registrars`, `estimate_cost`, `get_registrar_link`, `get_naming_guidance`, `check_availability`, `check_availability_batch`, and `get_domain_popularity` use the public research service at `https://cheapest.domains/mcp`. They never buy, register, transfer or renew domains. Requests may update usage counters, caches and telemetry; MCP therefore reports `readOnlyHint: false` and `idempotentHint: false`, with `destructiveHint: false` and `openWorldHint: true`. See [the public guide](https://www.cheapest.domains/developers.md) and [the bundled API reference](skills/domain-research/references/api.md).
 
 The skill keeps private project context in the conversation and sends only query filters and, when useful, a proposed name label. Query URLs can appear in service access logs. Cloudflare Registrar receives the exact domain when check_availability is called; configured Name.com, Gandi and Fastly, then the selected connected registrar if not already used, can also receive it when facts remain missing; Cloudflare Radar receives it when get_domain_popularity is called. Popularity is a DNS ranking, not Google competition or availability. Retain its source attribution, CC BY-NC 4.0 license, and dataset dates. The server caches successful popularity lookups for six hours; commercial data reuse requires separate permission. A selected registrar receives it when its search link is opened. Unchecked names are marked **availability not checked**; checks retain their status, provider, and timestamp and are repeated after expiry only when needed for the current request.
 
@@ -146,6 +146,27 @@ update does not establish service deployment or update installed clients.
 Version **0.10.1** adds MIT licensing and the public integration repository,
 including install commands and repository metadata. API **1.7.0**, the nine
 tools and the 20-extension batch limit are unchanged.
+
+Version **0.10.4** follows the MCP server's move to protocol 2026-07-28 support
+alongside 2025-era clients at the same URL. The REST examples use the
+`www.cheapest.domains` host, which answers browser CORS requests directly, and
+the skill notes that the server's instructions are now a short summary. MCP tool
+errors share the REST error envelope. API **1.7.0** and the nine tools are
+unchanged.
+
+Version **0.10.5** documents API **1.8.0**: offers may carry published regular
+prices beside a promotion (`regularRegistrationCents`, `regularRenewalCents`)
+and a published transfer-in price (`transferCents`), and name-free price answers
+may be served from a short CDN cache. Tool inputs and the nine tools are
+unchanged.
+
+Version **0.10.7** documents API **1.10.1**: MCP annotations acknowledge
+service-side accounting and cache writes. Domain research behavior, all nine
+tools, registrar links and request budgets are unchanged.
+
+Version **0.10.6** documents API **1.9.0**: GoDaddy offers carry the new
+`pricingBasis=sampled_api` label (sampled API purchase rates; GoDaddy's website
+can charge more). Tool inputs and the nine tools are unchanged.
 
 Version **0.10.3** adds the directory icon and explicit privacy, support,
 documentation and terms links for Claude's listing preview. Runtime tools and

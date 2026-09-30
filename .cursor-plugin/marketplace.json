@@ -1,6 +1,6 @@
 {
   "name": "cheapest-domains",
-  "owner": { "name": "Cheapest domains" },
+  "owner": { "name": "Cheapest Domains" },
   "metadata": { "description": "Domain-name discovery and renewal-price comparison tools for AI assistants." },
   "plugins": [
     {

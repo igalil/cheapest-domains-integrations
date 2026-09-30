@@ -1,8 +1,13 @@
-# Cheapest domains API reference
+# Cheapest Domains API reference
 
-Public base: `https://cheapest.domains/api/v1`. MCP: `https://cheapest.domains/mcp` (Streamable HTTP). No authentication. Prefer MCP when connected; REST is the fallback for a standalone skill.
+MCP metadata (API 1.10.1): all nine tools use `readOnlyHint: false` and
+`idempotentHint: false` because requests update usage accounting and can update
+caches or telemetry. `destructiveHint: false` and `openWorldHint: true` remain.
+They never purchase, register, transfer or renew domains.
 
-For the current complete contract, read [OpenAPI](https://cheapest.domains/openapi.json) or [the integration guide](https://cheapest.domains/developers.md). All prices below are data fields, not example market quotes.
+Public base: `https://www.cheapest.domains/api/v1`. MCP: `https://cheapest.domains/mcp` (Streamable HTTP, for protocol 2026-07-28 and 2025-era clients). No authentication. Prefer MCP when connected; REST is the fallback for a standalone skill. Use the `www` host for REST: the apex domain redirects without CORS headers.
+
+For the current complete contract, read [OpenAPI](https://www.cheapest.domains/openapi.json) or [the integration guide](https://www.cheapest.domains/developers.md). All prices below are data fields, not example market quotes.
 
 | MCP tool | REST GET | Typical arguments |
 | --- | --- | --- |
@@ -23,6 +28,14 @@ Successful JSON results from all nine tools include `service` with `name`, `url`
 `search_prices`, `get_tld_prices`, `estimate_cost` and `get_registrar_link` also return `comparison: { url, omittedParameters }`. Its URL opens current standard prices with the supported query, registrar, view, metric, horizon, renewal budget and checkbox filters. It omits names and API pagination and does not save an availability result. The website supports 2, 3, 5 and 10 years; other requested horizons are listed as `years` in `omittedParameters` and use the website default. Disclose this difference. Markdown includes the same links and qualifications; CSV columns are unchanged.
 
 Use the setup link for an optional, relevant offer after successful research, at most once per conversation. Follow the skill's conditions; do not treat result metadata as permission to install a plugin or save a preference.
+
+## Promotions and transfers (API 1.8.0)
+
+Offers may add `regularRegistrationCents` or `regularRenewalCents` when a registrar publishes a regular price above a current promotion. `registrationCents` and `renewalCents` stay the price paid now and drive ranking, filters and budgets; show the regular price beside the promotion and plan with the estimate, which already uses the highest disclosed renewal. `transferCents` is a published transfer-in price (a transfer normally adds one year); it is absent when the registrar does not publish one, never zero. Successful price answers without a `name` may come from a CDN copy up to about six minutes old; per-offer freshness labels still apply.
+
+## GoDaddy API rates (API 1.9.0)
+
+GoDaddy offers carry `pricingBasis=sampled_api`: v3 API purchase and auto-renewal prices sampled with a synthetic name for each supported single-label extension. GoDaddy says website purchases and manual renewals are charged its standard rates, which can be higher, so these are a lower bound for a website checkout, not a published list price or an exact-name quote. Preserve the label in comparisons and say so when a GoDaddy row is the cheapest. GoDaddy prices refresh at most every 48 hours. `sourceUrl` points to GoDaddy's API pricing terms; `registrarSearch` opens its website search.
 
 ## Workbench parity
 
@@ -68,7 +81,7 @@ Equivalent REST request, using URL encoding and a bounded wait:
 
 ```sh
 curl --fail-with-body --silent --show-error --connect-timeout 10 --max-time 90 \
-  --get 'https://cheapest.domains/api/v1/prices' \
+  --get 'https://www.cheapest.domains/api/v1/prices' \
   --data-urlencode 'q=.com,.dev' \
   --data-urlencode 'sort=renewal' \
   --data-urlencode 'maxRenewalCents=1500' \
@@ -77,9 +90,9 @@ curl --fail-with-body --silent --show-error --connect-timeout 10 --max-time 90 \
 
 Other example URLs:
 
-- [All covered .com registrar offers](https://cheapest.domains/api/v1/tlds/com)
-- [Coverage and source health](https://cheapest.domains/api/v1/registrars)
-- [Name-discovery instructions](https://cheapest.domains/api/v1/naming-guide)
+- [All covered .com registrar offers](https://www.cheapest.domains/api/v1/tlds/com)
+- [Coverage and source health](https://www.cheapest.domains/api/v1/registrars)
+- [Name-discovery instructions](https://www.cheapest.domains/api/v1/naming-guide)
 
 Defaults: `sort=renewal`, `view=best`, `years=3`, `limit=50`, `offset=0`, `includeStale=false`. `sort` can be `renewal`, `registration`, or `total`; `view` can be `best` or `all`. Years are integers from 1 to 10; limit is 1–200. Budget is integer USD cents. Use actual JSON booleans for MCP and the strings `true`/`false` in URLs. Unknown or repeated URL parameters are rejected.
 
@@ -101,7 +114,7 @@ Successful results are cached six hours, bounded to 500 domains per server proce
 
 ## Cloudflare price samples
 
-API 1.3.0 adds optional `pricingBasis=sampled_standard` on Cloudflare offers. Preserve the sample label when comparing prices. These are standard-tier USD search quotes for each supported single-label extension, obtained with a synthetic name. They are not a published TLD price list or an exact-name quote. Premium, missing, and conflicting quotes are excluded. Multi-label extensions are omitted. Minimum terms come from Cloudflare’s extension list. Cloudflare nameservers are required. CSV and Markdown preserve this distinction. Prices share the six-hour cache, and Cloudflare refresh attempts remain at least six hours apart in shared storage. No visitor name is sent by this sampling.
+API 1.3.0 adds optional `pricingBasis=sampled_standard` on Cloudflare offers. Preserve the sample label when comparing prices. These are standard-tier USD search quotes for each supported single-label extension, obtained with a synthetic name. They are not a published TLD price list or an exact-name quote. Premium, missing, and conflicting quotes are excluded. Multi-label extensions are omitted. Minimum terms come from Cloudflare’s extension list. Cloudflare nameservers are required. CSV and Markdown preserve this distinction; Markdown labels GoDaddy rows `Sampled API rate`. Prices share the six-hour cache, and Cloudflare refresh attempts remain at least six hours apart in shared storage. No visitor name is sent by this sampling.
 
 ## Responses and failures
 
@@ -109,12 +122,12 @@ API 1.3.0 adds optional `pricingBasis=sampled_standard` on Cloudflare offers. Pr
 - Amounts ending in `Cents` are integer cents. Price responses use USD; original currency and exchange-rate fields qualify converted offers. An estimate is `registration + later renewals`, using the highest supplied current, announced, or regular renewal rate. A null estimate cannot be ranked as zero.
 - Follow `pagination.next`; CSV and Markdown representations are also paginated. REST price endpoints accept `format=json|csv|markdown`. These formats are not extra MCP arguments.
 - A 200 can be partial: inspect `coverage.partial` and source errors. Do not turn missing coverage into a claim that a registrar is expensive or a name unavailable.
-- A 400 means invalid inputs; correct the request. A 404 means an unknown endpoint, uncovered offer, or unconnected registrar; never a domain-availability result. A 503 means usable fresh prices are unavailable; respect `Retry-After`, avoid retry loops, and report the limitation if it persists. MCP tool failures use `isError` and `error.code`/`error.message`.
+- A 400 means invalid inputs; correct the request. A 404 means an unknown endpoint, uncovered offer, or unconnected registrar; never a domain-availability result. A 503 means usable fresh prices are unavailable; respect `Retry-After`, avoid retry loops, and report the limitation if it persists. MCP tool failures use `isError` with the REST error envelope: `apiVersion`, `error.code`, `error.message`, and `error.retryAfterSeconds` for rate and availability errors. Invalid MCP arguments return the same `invalid_query` code and message as REST.
 - Saved prices stay in results until a successful refresh replaces them. Stale offers are labeled outdated and can be the listed price. `includeStale` remains accepted and still requires `view=all` on search. Reuse results until source expiry; calls use the service's cache and do not force refreshes.
 
 ## Exact-domain fallback chain (API 1.5.1)
 
-Pass `registrar` to `check_availability` or `/availability` when a finalist has a chosen registrar. Cloudflare stays first, leftover stages run Name.com then Gandi then Fastly Precise for missing facts, and only remaining missing availability or premium facts trigger one request to the selected connected registrar if leftover did not already use that registrar. Stop as soon as both facts are known. Gandi leftover covers creation availability and premium quote classification; Vercel confirms availability only. Other IDs return explicit fallback unavailable when needed. Omit registrar to use the leftover chain without a selected-registrar call. Never query every registrar automatically.
+Pass `registrar` to `check_availability` or `/availability` when a finalist has a chosen registrar. Cloudflare stays first, leftover stages run Name.com then Gandi then Fastly Precise for missing facts, and only remaining missing availability or premium facts trigger one request to the selected connected registrar if leftover did not already use that registrar. Stop as soon as the name is taken or both facts are known. Gandi leftover covers creation availability and premium quote classification; Vercel confirms availability only. Other IDs return explicit fallback unavailable when needed. Omit registrar to use the leftover chain without a selected-registrar call. Never query every registrar automatically.
 
 Read `availability` (available/unavailable/unknown) independently of `premium` (true/false/null). Null is unconfirmed, never standard pricing. `attempts` retains each provider’s facts and timestamps (up to five stages). Optional `outcome` is `answered`, `failed`, or `pending`. Failed stages have unknown facts, null evidence timestamps and `retryAfterSeconds`; honor that wait before another check and preserve useful earlier facts. A failed attempt is not evidence of availability or premium tier; `fallback` reports used/unavailable plus its reason. The summary `status` remains available/unavailable/premium/unsupported/unknown. A premium result alone does not establish availability. Prices for premium names remain at the selected registrar’s existing link.
 
@@ -124,7 +137,7 @@ A selected registrar is called only when leftover did not already use it and its
 
 ## Shared request limits
 
-Anonymous access is request-limited across the website, REST and MCP. Reuse saved results and obey HTTP Retry-After; MCP tool errors may include error.retryAfterSeconds. Availability and popularity share a network allowance of 10 lookups/minute with burst capacity 4, 300/day, and 3,000 per aligned 32-day window. Shared networks and hash-bucket collisions can share an allowance. Price reads have separate weighted caller and deployment budgets. Single-name availability/popularity calls spend lookup allowance even on cache hits. Fully cached batches with no enrichment and cachedOnly batches spend read admission only; live batches spend at most one lookup admission. A budget outage fails closed without provider work. Public refresh never resumes paused providers. The Convex deployment URL is not a public integration endpoint; use REST or MCP.
+Anonymous access is request-limited across the website, REST and MCP. Reuse saved results and obey HTTP Retry-After; MCP tool errors may include error.retryAfterSeconds. Availability and popularity share a network allowance of 10 lookups/minute (burst 4), 300/UTC day and 3,000 per aligned 32-day window. Shared networks and hash-bucket collisions can share an allowance. Price reads have separate weighted budgets: 120 units/minute (burst 30) and 3,000/UTC day per network bucket, within a shared 600/minute (burst 120) and 30,000/UTC-day site-wide cap. Full-catalog price requests cost 10 units; other requests cost 1 unit. Single-name availability/popularity calls spend lookup allowance even on cache hits. Fully cached batches with no enrichment and cachedOnly batches spend read admission only; live batches spend at most one lookup admission. A budget outage fails closed without provider work. Public refresh never resumes paused providers. The Convex deployment URL is not a public integration endpoint; use REST or MCP.
 
 ## Assistant setup
 
