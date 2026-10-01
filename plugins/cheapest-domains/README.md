@@ -160,6 +160,10 @@ and a published transfer-in price (`transferCents`), and name-free price answers
 may be served from a short CDN cache. Tool inputs and the nine tools are
 unchanged.
 
+Version **0.10.8** configures Codex's listing and composer icons to use the
+bundled lime CD globe, replacing the missing-logo fallback. It reuses the
+existing square SVG; API **1.10.1**, the tools and shared skill are unchanged.
+
 Version **0.10.7** documents API **1.10.1**: MCP annotations acknowledge
 service-side accounting and cache writes. Domain research behavior, all nine
 tools, registrar links and request budgets are unchanged.
