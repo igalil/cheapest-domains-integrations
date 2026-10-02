@@ -6,6 +6,10 @@ Our main focus is the real cost of keeping a domain: its annual renewal price. C
 
 No API key is required for Cheapest Domains. The host AI application still requires its own normal access. The plugin contains instructions and a remote connection; it runs no installation hooks or local server. Use check_availability for exact names; purchasing is not supported. The deployed server must have its availability provider configured.
 
+## Name finder
+
+Start with seed names and an optional project description at [the naming form](https://www.cheapest.domains/naming). It prepares a request for your connected ChatGPT, Claude, Cursor or other assistant. In compatible MCP Apps hosts, `open_name_finder` opens the form inside the assistant; the ChatGPT extension declares sidebar and conversation entrypoints. After checks, `compare_domain_names` displays a renewal-first shortlist from saved prices and fresh cached evidence. Host support and public-directory approval determine where the UI is available. Website subscription sign-in is not connected.
+
 ## Service links
 
 - [Privacy policy](https://www.cheapest.domains/privacy)
@@ -159,6 +163,12 @@ prices beside a promotion (`regularRegistrationCents`, `regularRenewalCents`)
 and a published transfer-in price (`transferCents`), and name-free price answers
 may be served from a short CDN cache. Tool inputs and the nine tools are
 unchanged.
+
+Version **0.11.0** aligns with API **1.11.0** and eleven tools: a naming form in
+compatible MCP Apps hosts, ChatGPT sidebar/conversation entrypoints, and a
+renewal-first shortlist from saved prices and fresh cached availability. The
+website prepares a request for a connected assistant; subscription sign-in is
+not connected. Existing research tools, direct registrar links and budgets remain.
 
 Version **0.10.8** configures Codex's listing and composer icons to use the
 bundled lime CD globe, replacing the missing-logo fallback. It reuses the

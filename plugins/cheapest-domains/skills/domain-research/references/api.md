@@ -1,6 +1,6 @@
 # Cheapest Domains API reference
 
-MCP metadata (API 1.10.1): all nine tools use `readOnlyHint: false` and
+MCP metadata (API 1.11.0): all eleven tools use `readOnlyHint: false` and
 `idempotentHint: false` because requests update usage accounting and can update
 caches or telemetry. `destructiveHint: false` and `openWorldHint: true` remain.
 They never purchase, register, transfer or renew domains.
@@ -17,13 +17,19 @@ For the current complete contract, read [OpenAPI](https://www.cheapest.domains/o
 | `estimate_cost` | `/estimate` | Required `tld`, `registrar`, `years` |
 | `get_registrar_link` | `/registrar-link` | Required `tld`, `registrar`, `name` |
 | `get_naming_guidance` | `/naming-guide` | None |
+| `open_name_finder` | `/name-finder` | None; opens a form in compatible MCP Apps hosts |
+| `compare_domain_names` | `/name-comparison` | Required comma-separated `domains` (1–10 distinct exact ASCII names); optional `maxRenewalCents` |
 | `check_availability` | `/availability` | Required `name`, `tld`; optional `registrar`, `fresh` |
 | `check_availability_batch` | `/availability-batch` | Required `name`, comma-separated `tlds` (1–20); optional `cachedOnly` |
 | `get_domain_popularity` | `/popularity` | Required `name`, `tld` |
 
+## Naming form and comparison (API 1.11.0)
+
+`open_name_finder` returns a text workflow; compatible hosts can render its self-contained MCP App. ChatGPT entrypoints use the current assistant, not website subscription authentication. `compare_domain_names?domains=brightkit.com,madebright.dev` combines saved prices with fresh cached checks for 1–10 distinct ASCII label.TLD names. Check candidates first using availability tools. No new lookup occurs during comparison; expired or missing answers are Not confirmed. Inspect each row's availability and premium separately, its source coverage and renewal-ranked offers. Standard prices are references, not premium quotes. A budget may leave no covered offers. `partial`, `unconfirmedDomains` and optional `error.retryAfterSeconds` preserve incomplete work. Responses are `no-store`; read admission applies per label group and distinct extension. No model credentials or private brief are accepted by either endpoint.
+
 ## Service and comparison links (API 1.7.0)
 
-Successful JSON results from all nine tools include `service` with `name`, `url`, `setupUrl` and `pluginUrl`. Credit Cheapest Domains alongside the upstream provider/source and dates. These links do not prove a client is installed or a provider is healthy; errors are unchanged. The capability/health endpoints retain their existing `service` string.
+Successful JSON results from all eleven tools include `service` with `name`, `url`, `setupUrl` and `pluginUrl`. Credit Cheapest Domains alongside the upstream provider/source and dates. These links do not prove a client is installed or a provider is healthy; errors are unchanged. The capability/health endpoints retain their existing `service` string.
 
 `search_prices`, `get_tld_prices`, `estimate_cost` and `get_registrar_link` also return `comparison: { url, omittedParameters }`. Its URL opens current standard prices with the supported query, registrar, view, metric, horizon, renewal budget and checkbox filters. It omits names and API pagination and does not save an availability result. The website supports 2, 3, 5 and 10 years; other requested horizons are listed as `years` in `omittedParameters` and use the website default. Disclose this difference. Markdown includes the same links and qualifications; CSV columns are unchanged.
 
